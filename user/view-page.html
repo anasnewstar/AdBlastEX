@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdBlast - View Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --accent-color: #2196F3;
+            --dark-bg: #222;
+            --light-bg: #f8f8f8;
+            --text-color: #333;
+            --light-text: #fff;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu li {
+            margin-left: 20px;
+            position: relative;
+        }
+
+        .nav-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 5px 0;
+            display: block;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--primary-color);
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* Loading */
+        .loading-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+        }
+
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--primary-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin-right: 20px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .error-container {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #fff;
+        }
+
+        .error-container a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            border: 2px solid var(--primary-color);
+            border-radius: var(--border-radius);
+            transition: all 0.3s ease;
+        }
+
+        .error-container a:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Hero */
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://source.unsplash.com/random/1600x900/?landscape');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 150px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 100%);
+            z-index: 1;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 40px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            background-color: #388E3C;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Main Content */
+        .main-content {
+            display: none;
+            /* Hidden by default until loaded */
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-light {
+            background-color: #fff;
+        }
+
+        .section-dark {
+            background-color: var(--light-bg);
+        }
+
+        /* Countdown */
+        .countdown-section {
+            background-color: var(--light-bg);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            background-color: var(--primary-color);
+            color: white;
+            width: 100px;
+            height: 100px;
+            border-radius: var(--border-radius);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 50%);
+        }
+
+        .countdown-number {
+            font-size: 36px;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .countdown-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Gallery */
+        .gallery-section {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 3px;
+        }
+
+        .section-title p {
+            color: #666;
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-top: 15px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .gallery-item {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: #fff;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gallery-item-info h3 {
+            margin: 0 0 15px 0;
+            color: var(--primary-color);
+            font-size: 20px;
+        }
+
+        .gallery-item-info p {
+            margin: 0;
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-section h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-size: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 3px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            padding: 2px 0;
+            display: inline-block;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-section p {
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+        }
+
+        .copyright p {
+            margin-bottom: 10px;
+        }
+
+        /* Ad elements */
+        .ad-container {
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+            border: 1px solid #e9ecef;
+            margin: 20px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .ad-container::before {
+            content: 'ADVERTISEMENT';
+            font-size: 10px;
+            color: #999;
+            position: absolute;
+            top: 2px;
+            right: 5px;
+        }
+
+        .ad-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .ad-button:hover {
+            background-color: #1976D2;
+        }
+
+        /* Toast notification for ads */
+        .toast-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+                padding: 10px 0;
+            }
+
+            .nav-menu {
+                margin-top: 15px;
+                justify-content: center;
+            }
+
+            .nav-menu li {
+                margin: 0 10px;
+            }
+
+            .hero {
+                padding: 100px 20px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .countdown-item {
+                width: 70px;
+                height: 70px;
+            }
+
+            .countdown-number {
+                font-size: 24px;
+            }
+
+            .countdown-label {
+                font-size: 12px;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .footer-section {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 24px;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .countdown-container {
+                gap: 10px;
+            }
+
+            .countdown-item {
+                width: 60px;
+                height: 60px;
+            }
+
+            .countdown-number {
+                font-size: 20px;
+            }
+
+            .countdown-label {
+                font-size: 10px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loading-container" id="loading-container">
+        <div class="loader"></div>
+        <div>
+            <h2>Loading Page...</h2>
+            <p>Please wait while we load your custom page.</p>
+        </div>
+    </div>
+
+    <div class="error-container" id="error-container">
+        <div>
+            <h2>Page Not Found</h2>
+            <p id="error-message">Sorry, the page you're looking for doesn't exist.</p>
+            <a href="../index.html">Return to Home</a>
+        </div>
+    </div>
+
+    <div class="main-content" id="main-content">
+        <!-- Content will be loaded here dynamically -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Ad system variables
+            let adCounter = 0;
+            let adminAdUrl = "https://adblast.com"; // Default admin ad URL
+            let adTimerActive = true;
+            let adInterval;
+
+            // Parse URL parameters
+            const params = new URLSearchParams(window.location.search);
+            const username = params.get('username');
+            const pageSlug = params.get('slug');
+
+            if (!username || !pageSlug) {
+                showError("Missing username or page slug");
+                return;
+            }
+
+            // Create toast notification element
+            const toastElement = document.createElement('div');
+            toastElement.className = 'toast-notification';
+            document.body.appendChild(toastElement);
+
+            // Function to show toast notification
+            function showToast(message, duration = 3000) {
+                toastElement.textContent = message;
+                toastElement.style.display = 'block';
+
+                setTimeout(() => {
+                    toastElement.style.display = 'none';
+                }, duration);
+            }
+
+            // Attempt to load the page
+            loadCustomPage(username, pageSlug);
+
+            function loadCustomPage(username, pageSlug) {
+                try {
+                    // Get all users
+                    const users = JSON.parse(localStorage.getItem('adblast_users') || '[]');
+                    const user = users.find(u => u.username === username);
+
+                    if (!user) {
+                        showError(`User "${username}" not found`);
+                        return;
+                    }
+
+                    // Find the page by slug
+                    const page = user.pages.find(p => p.slug === pageSlug);
+
+                    if (!page) {
+                        showError(`Page "${pageSlug}" not found for user "${username}"`);
+                        return;
+                    }
+
+                    // Get admin gallery images
+                    let adminGalleryImages = [];
+                    try {
+                        const storedImages = localStorage.getItem('adblast_gallery_images');
+                        if (storedImages) {
+                            adminGalleryImages = JSON.parse(storedImages);
+                        }
+                    } catch (e) {
+                        console.warn('Error loading admin gallery images:', e);
+                    }
+
+                    // Get admin ad URL - this would normally come from your server or configuration
+                    try {
+                        // Try to get admin info from localStorage
+                        const adminInfo = JSON.parse(localStorage.getItem('adblast_admin_info') || '{}');
+                        if (adminInfo.adUrl) {
+                            adminAdUrl = adminInfo.adUrl;
+                        }
+                    } catch (e) {
+                        console.warn("Could not get admin ad URL:", e);
+                    }
+
+                    // Update page view count
+                    page.views = (page.views || 0) + 1;
+                    localStorage.setItem('adblast_users', JSON.stringify(users));
+
+                    // Update page title
+                    document.title = page.title || 'AdBlast Custom Page';
+
+                    // Update the main colors
+                    document.documentElement.style.setProperty('--primary-color', page.primaryColor || '#4CAF50');
+                    document.documentElement.style.setProperty('--accent-color', page.accentColor || '#2196F3');
+
+                    // Build the page content
+                    const mainContent = document.getElementById('main-content');
+
+                    // Header
+                    const header = document.createElement('header');
+                    header.innerHTML = `
+                        <div class="container header-container">
+                            <a href="#" class="logo">${username}'s Page</a>
+                            <ul class="nav-menu">
+                                <li><a href="#" class="active">Home</a></li>
+                                <li><a href="#gallery">Gallery</a></li>
+                                ${page.showGames ? '<li><a href="#games">Games</a></li>' : ''}
+                                <li><a href="#about">About</a></li>
+                                <li><a href="#contact">Contact</a></li>
+                            </ul>
+                        </div>
+                    `;
+                    mainContent.appendChild(header);
+
+                    // Hero Section
+                    const hero = document.createElement('section');
+                    hero.className = 'hero';
+                    if (page.heroImageKeyword) {
+                        hero.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://source.unsplash.com/random/1600x900/?${page.heroImageKeyword}')`;
+                    }
+                    hero.innerHTML = `
+                        <div class="container">
+                            <h1>${page.heroTitle || page.title || 'Welcome to My Ad Page'}</h1>
+                            <p>${page.heroSubtitle || page.description || 'Discover amazing content and offers'}</p>
+                            <a href="${shouldShowAd() ? page.adUrl : '#'}" class="cta-button pulse-animation" id="main-cta">Learn More</a>
+                        </div>
+                    `;
+                    mainContent.appendChild(hero);
+
+                    // Countdown Section (if enabled)
+                    if (page.showCountdown) {
+                        const countdown = document.createElement('section');
+                        countdown.className = 'countdown-section';
+                        countdown.innerHTML = `
+                            <div class="container">
+                                <h2>Limited Time Offer</h2>
+                                <p>This special offer expires in:</p>
+                                <div class="countdown-container">
+                                    <div class="countdown-item">
+                                        <span class="countdown-number" id="countdown-days">0</span>
+                                        <span class="countdown-label">Days</span>
+                                    </div>
+                                    <div class="countdown-item">
+                                        <span class="countdown-number" id="countdown-hours">0</span>
+                                        <span class="countdown-label">Hours</span>
+                                    </div>
+                                    <div class="countdown-item">
+                                        <span class="countdown-number" id="countdown-minutes">0</span>
+                                        <span class="countdown-label">Minutes</span>
+                                    </div>
+                                    <div class="countdown-item">
+                                        <span class="countdown-number" id="countdown-seconds">0</span>
+                                        <span class="countdown-label">Seconds</span>
+                                    </div>
+                                </div>
+                            </div>
+                            ${shouldShowAd() ? createAdElement(page.adUrl, "Don't miss this amazing offer!") : ''}
+                        `;
+                        mainContent.appendChild(countdown);
+
+                        // Add countdown JavaScript
+                        setTimeout(function () {
+                            // Set countdown to 3 days from now
+                            const countdownDate = new Date();
+                            countdownDate.setDate(countdownDate.getDate() + 3);
+
+                            function updateCountdown() {
+                                const now = new Date().getTime();
+                                const distance = countdownDate - now;
+
+                                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                                document.getElementById('countdown-days').textContent = days;
+                                document.getElementById('countdown-hours').textContent = hours;
+                                document.getElementById('countdown-minutes').textContent = minutes;
+                                document.getElementById('countdown-seconds').textContent = seconds;
+                            }
+
+                            // Update countdown every second
+                            setInterval(updateCountdown, 1000);
+                            updateCountdown();
+                        }, 100);
+                    }
+
+                    // Gallery Section (if enabled)
+                    if (page.showGallery) {
+                        const gallery = document.createElement('section');
+                        gallery.className = 'gallery-section';
+                        gallery.id = 'gallery';
+
+                        let galleryItemsHtml = '';
+                        let hasValidImages = false;
+
+                        // First try to use the user's uploaded images
+                        if (page.galleryImages && page.galleryImages.length > 0) {
+                            page.galleryImages.forEach(image => {
+                                // Check if image.url starts with data: (base64 encoded)
+                                let imageUrl = image.url;
+                                if (!imageUrl.startsWith('data:') && !imageUrl.startsWith('http')) {
+                                    // Use a fallback image from Unsplash
+                                    imageUrl = `https://source.unsplash.com/300x200/?gallery`;
+                                }
+
+                                galleryItemsHtml += `
+                                    <div class="gallery-item">
+                                        <img src="${imageUrl}" alt="${image.title || 'Gallery Image'}" 
+                                             onerror="this.onerror=null; this.src='https://source.unsplash.com/300x200/?gallery';">
+                                        <div class="gallery-item-info">
+                                            <h3>${image.title || 'Gallery Image'}</h3>
+                                            <p>${image.description || 'No description'}</p>
+                                            ${shouldShowAd() ? `<a href="${page.adUrl}" class="ad-button">Learn More</a>` : ''}
+                                        </div>
+                                    </div>
+                                `;
+                                hasValidImages = true;
+                            });
+                        }
+
+                        // If no user images or they failed to load, use admin gallery images
+                        if (!hasValidImages && adminGalleryImages && adminGalleryImages.length > 0) {
+                            adminGalleryImages.forEach((image, index) => {
+                                galleryItemsHtml += `
+                                    <div class="gallery-item">
+                                        <img src="${image.url}" alt="${image.name || `Admin Gallery Image ${index + 1}`}" 
+                                             onerror="this.onerror=null; this.src='https://source.unsplash.com/300x200/?gallery';">
+                                        <div class="gallery-item-info">
+                                            <h3>${image.name || `Gallery Image ${index + 1}`}</h3>
+                                            <p>Image from our collection</p>
+                                            ${shouldShowAd() ? `<a href="${page.adUrl}" class="ad-button">Learn More</a>` : ''}
+                                        </div>
+                                    </div>
+                                `;
+                                hasValidImages = true;
+                            });
+                        }
+
+                        // If still no valid images, use random placeholder images
+                        if (!hasValidImages) {
+                            const categories = ['nature', 'technology', 'food', 'travel', 'business', 'art'];
+                            for (let i = 1; i <= 6; i++) {
+                                const randomCategory = categories[Math.floor(Math.random() * categories.length)];
+                                galleryItemsHtml += `
+                                    <div class="gallery-item">
+                                        <img src="https://source.unsplash.com/300x200/?${randomCategory}" 
+                                             alt="Gallery Image ${i}" 
+                                             onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200?text=Image+${i}';">
+                                        <div class="gallery-item-info">
+                                            <h3>Gallery Image ${i}</h3>
+                                            <p>This is a sample gallery image description for ${randomCategory}.</p>
+                                            ${shouldShowAd() && i % 3 === 0 ? `<a href="${page.adUrl}" class="ad-button">Check Offer</a>` : ''}
+                                        </div>
+                                    </div>
+                                `;
+                            }
+                        }
+
+                        gallery.innerHTML = `
+                            <div class="container">
+                                <div class="section-title">
+                                    <h2>Image Gallery</h2>
+                                    <p>Explore our collection of stunning images</p>
+                                </div>
+                                <div class="gallery-grid">
+                                    ${galleryItemsHtml}
+                                </div>
+                                ${shouldShowAd() ? createAdElement(page.adUrl, "Exclusive offer for our gallery visitors!") : ''}
+                            </div>
+                        `;
+                        mainContent.appendChild(gallery);
+                    }
+
+                    // Add games section if enabled
+                    if (page.showGames) {
+                        const gamesSection = document.createElement('section');
+                        gamesSection.className = 'section section-dark';
+                        gamesSection.id = 'games';
+
+                        const games = [
+                            {
+                                title: "Tic-Tac-Toe",
+                                description: "Play the classic game of Tic-Tac-Toe against the computer.",
+                                image: "https://source.unsplash.com/300x200/?game"
+                            },
+                            {
+                                title: "Memory Match",
+                                description: "Test your memory by finding matching pairs of cards.",
+                                image: "https://source.unsplash.com/300x200/?memory"
+                            },
+                            {
+                                title: "Rock Paper Scissors",
+                                description: "Play Rock Paper Scissors against the computer.",
+                                image: "https://source.unsplash.com/300x200/?rockpaper"
+                            }
+                        ];
+
+                        let gamesHtml = '';
+                        games.forEach((game, index) => {
+                            gamesHtml += `
+                                <div class="gallery-item">
+                                    <img src="${game.image}" alt="${game.title}">
+                                    <div class="gallery-item-info">
+                                        <h3>${game.title}</h3>
+                                        <p>${game.description}</p>
+                                        <a href="${shouldShowAd() && index % 2 === 0 ? page.adUrl : '#'}" class="ad-button">Play Now</a>
+                                    </div>
+                                </div>
+                            `;
+                        });
+
+                        gamesSection.innerHTML = `
+                            <div class="container">
+                                <div class="section-title">
+                                    <h2>Interactive Games</h2>
+                                    <p>Have fun with these interactive games</p>
+                                </div>
+                                <div class="gallery-grid">
+                                    ${gamesHtml}
+                                </div>
+                            </div>
+                        `;
+
+                        mainContent.appendChild(gamesSection);
+                    }
+
+                    // About Section
+                    const aboutSection = document.createElement('section');
+                    aboutSection.className = 'section section-light';
+                    aboutSection.id = 'about';
+                    aboutSection.innerHTML = `
+                        <div class="container">
+                            <div class="section-title">
+                                <h2>About Us</h2>
+                                <p>Learn more about what we offer</p>
+                            </div>
+                            <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">
+                                ${page.description || 'We are dedicated to providing high-quality content and services to our users. Our mission is to create engaging experiences that inform, entertain, and inspire.'}
+                            </p>
+                            ${shouldShowAd() ? createAdElement(page.adUrl, "Special offer for our valued visitors!") : ''}
+                        </div>
+                    `;
+                    mainContent.appendChild(aboutSection);
+
+                    // Contact Section
+                    const contactSection = document.createElement('section');
+                    contactSection.className = 'section section-dark';
+                    contactSection.id = 'contact';
+                    contactSection.innerHTML = `
+                        <div class="container">
+                            <div class="section-title">
+                                <h2>Contact Us</h2>
+                                <p>Reach out with any questions or comments</p>
+                            </div>
+                            <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+                                <p><strong>Email:</strong> ${username}@example.com</p>
+                                <p><strong>Phone:</strong> (123) 456-7890</p>
+                                <p><strong>Address:</strong> 123 Main Street, City, Country</p>
+                            </div>
+                        </div>
+                    `;
+                    mainContent.appendChild(contactSection);
+
+                    // Footer
+                    const footer = document.createElement('footer');
+                    footer.innerHTML = `
+                        <div class="container footer-container">
+                            <div class="footer-section">
+                                <h3>About Us</h3>
+                                <p>Custom ad page created with AdBlast platform.</p>
+                                <p>Designed to showcase your content and connect with your audience.</p>
+                            </div>
+                            <div class="footer-section">
+                                <h3>Quick Links</h3>
+                                <ul>
+                                    <li><a href="#">Home</a></li>
+                                    <li><a href="#gallery">Gallery</a></li>
+                                    ${page.showGames ? '<li><a href="#games">Games</a></li>' : ''}
+                                    <li><a href="#about">About</a></li>
+                                    <li><a href="#contact">Contact</a></li>
+                                </ul>
+                            </div>
+                            <div class="footer-section">
+                                <h3>Contact</h3>
+                                <ul>
+                                    <li><i class="fas fa-envelope"></i> Email: ${username}@example.com</li>
+                                    <li><i class="fas fa-phone"></i> Phone: (123) 456-7890</li>
+                                    <li><i class="fas fa-map-marker-alt"></i> Location: Worldwide</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="copyright">
+                            <p>&copy; ${new Date().getFullYear()} ${username}'s AdBlast Page. All rights reserved.</p>
+                            <p>Powered by <a href="../index.html" target="_blank">AdBlast</a></p>
+                        </div>
+                    `;
+                    mainContent.appendChild(footer);
+
+                    // Add tracking for clicks
+                    setTimeout(function () {
+                        document.querySelectorAll('a.cta-button, a.ad-button').forEach(link => {
+                            link.addEventListener('click', function (e) {
+                                // For demo purposes, increment click count in localStorage
+                                const users = JSON.parse(localStorage.getItem('adblast_users') || '[]');
+                                const user = users.find(u => u.username === username);
+                                if (user) {
+                                    const page = user.pages.find(p => p.slug === pageSlug);
+                                    if (page) {
+                                        page.clicks = (page.clicks || 0) + 1;
+                                        localStorage.setItem('adblast_users', JSON.stringify(users));
+                                    }
+                                }
+                            });
+                        });
+                    }, 100);
+
+                    // Show the content and hide loading
+                    document.getElementById('loading-container').style.display = 'none';
+                    mainContent.style.display = 'block';
+
+                    // Initial random ad popup when page loads (20% chance)
+                    if (Math.random() < 0.2) {
+                        setTimeout(() => {
+                            openRandomAd(page.adUrl);
+                            showToast("Ad opened in new tab");
+                        }, 2000); // Delay by 2 seconds after page load
+                    }
+
+                    // Start the ad timer that opens every 30 seconds
+                    startAdTimer(page.adUrl);
+
+                } catch (error) {
+                    console.error('Error loading custom page:', error);
+                    showError(`Error: ${error.message}`);
+                }
+            }
+
+            function showError(message) {
+                document.getElementById('loading-container').style.display = 'none';
+                const errorContainer = document.getElementById('error-container');
+                errorContainer.style.display = 'flex';
+
+                // Update error message if provided
+                if (message) {
+                    const errorParagraph = document.getElementById('error-message');
+                    if (errorParagraph) {
+                        errorParagraph.textContent = message;
+                    }
+                }
+            }
+
+            // Function to determine if an ad should be shown (40% chance - roughly 2 out of 5)
+            function shouldShowAd() {
+                return Math.random() < 0.4;
+            }
+
+            // Function to create an ad element
+            function createAdElement(adUrl, message) {
+                return `
+                    <div class="ad-container">
+                        <h3>${message}</h3>
+                        <p>Click below to learn more about our exclusive deals.</p>
+                        <a href="${adUrl}" class="ad-button">Learn More</a>
+                    </div>
+                `;
+            }
+
+            // Function to open a random ad in a new tab
+            function openRandomAd(userAdUrl) {
+                adCounter++;
+
+                // Determine which ad to show
+                // For every 8 ads, show 2 admin ads (25%) and 6 user ads (75%)
+                let adUrl;
+
+                // Show admin ad on 3rd and 7th out of every 8 ads
+                if (adCounter % 8 === 3 || adCounter % 8 === 7) {
+                    adUrl = adminAdUrl;
+                    console.log("Opening admin ad (#" + adCounter + ")");
+                } else {
+                    adUrl = userAdUrl;
+                    console.log("Opening user ad (#" + adCounter + ")");
+                }
+
+                // Open the ad in a new tab
+                window.open(adUrl, '_blank');
+            }
+
+            // Function to start the ad timer
+            function startAdTimer(userAdUrl) {
+                // Clear any existing interval
+                if (adInterval) {
+                    clearInterval(adInterval);
+                }
+
+                // Create new interval that fires every 30 seconds
+                adInterval = setInterval(() => {
+                    if (adTimerActive) {
+                        openRandomAd(userAdUrl);
+                        showToast("Ad opened in new tab");
+                    }
+                }, 30000); // 30 seconds
+
+                console.log("Ad timer started - ad will open every 30 seconds");
+            }
+
+            // Listen for page visibility changes to pause the ad timer when tab is not active
+            document.addEventListener('visibilitychange', function () {
+                if (document.hidden) {
+                    adTimerActive = false;
+                    console.log("Page hidden, ad timer paused");
+                } else {
+                    adTimerActive = true;
+                    console.log("Page visible, ad timer resumed");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

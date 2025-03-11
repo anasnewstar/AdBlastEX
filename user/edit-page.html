@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdBlast - Edit Ad Page</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/user.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="user-body dashboard-body">
+    <!-- User Header -->
+    <header class="user-header-nav">
+        <div class="header-left">
+            <img src="../Logo.png" alt="AdBlast Logo" class="user-nav-logo">
+            <h2>Edit Ad Page</h2>
+        </div>
+        <div class="header-right">
+            <div class="user-profile-menu">
+                <span id="user-name">User</span>
+                <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+                <div class="profile-dropdown">
+                    <a href="profile.html"><i class="fas fa-user-circle"></i> My Profile</a>
+                    <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                    <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="user-sidebar">
+            <ul class="user-menu">
+                <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="my-pages.html"><i class="fas fa-file-alt"></i> My Pages</a></li>
+                <li><a href="create-page.html"><i class="fas fa-plus-circle"></i> Create New Page</a></li>
+                <li><a href="ad-manager.html"><i class="fas fa-ad"></i> Ad Manager</a></li>
+                <li><a href="analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="dashboard-content">
+            <div class="dashboard-welcome">
+                <h1>Edit Ad Page</h1>
+                <p>Update your ad page settings and content.</p>
+            </div>
+
+            <div class="dashboard-row">
+                <div class="dashboard-card full-width">
+                    <div class="card-header">
+                        <h3>Page Details</h3>
+                    </div>
+                    <div class="card-content">
+                        <form id="edit-page-form" class="user-form two-column">
+                            <div class="form-column">
+                                <div class="form-group">
+                                    <label for="page-title">Page Title</label>
+                                    <input type="text" id="page-title" name="page-title"
+                                        placeholder="Enter a title for your page" required>
+                                    <p class="input-help">This will appear as the title in browser tabs and search
+                                        results.</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="page-description">Page Description</label>
+                                    <textarea id="page-description" name="page-description" rows="3"
+                                        placeholder="Brief description of your page"></textarea>
+                                    <p class="input-help">Will be used for SEO and when sharing on social media.</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="page-slug">Custom URL</label>
+                                    <div class="input-group">
+                                        <span class="input-prefix">adblast.com/user/</span>
+                                        <input type="text" id="page-slug" name="page-slug" placeholder="your-page-name"
+                                            required>
+                                    </div>
+                                    <p class="input-help">Choose a unique URL for your page. Only letters, numbers, and
+                                        hyphens.</p>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="primary-color">Primary Color</label>
+                                        <input type="color" id="primary-color" name="primary-color" value="#4CAF50">
+                                        <p class="input-help">Main color for buttons and highlights.</p>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="accent-color">Accent Color</label>
+                                        <input type="color" id="accent-color" name="accent-color" value="#2196F3">
+                                        <p class="input-help">Secondary color for elements like links.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-column">
+                                <div class="form-group">
+                                    <label for="hero-title">Hero Section Title</label>
+                                    <input type="text" id="hero-title" name="hero-title"
+                                        placeholder="Enter a catchy headline">
+                                    <p class="input-help">Main headline that visitors will see first.</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="hero-subtitle">Hero Section Subtitle</label>
+                                    <input type="text" id="hero-subtitle" name="hero-subtitle"
+                                        placeholder="Supporting text for your headline">
+                                    <p class="input-help">Brief text that appears below the headline.</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="hero-image">Hero Background Image</label>
+                                    <input type="file" id="hero-image" name="hero-image" accept="image/*">
+                                    <p class="input-help">Background image for the hero section. Recommended size:
+                                        1920x1080px.</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="ad-url">Primary Ad URL</label>
+                                    <input type="url" id="ad-url" name="ad-url" placeholder="https://example.com"
+                                        required>
+                                    <p class="input-help">The main URL where visitors will be directed when clicking
+                                        your ads.</p>
+                                </div>
+
+                                <div class="form-group checkbox-group">
+                                    <input type="checkbox" id="show-countdown" name="show-countdown">
+                                    <label for="show-countdown">Show Countdown Timer</label>
+                                    <p class="input-help">Creates urgency with a countdown timer.</p>
+                                </div>
+
+                                <div class="form-group checkbox-group">
+                                    <input type="checkbox" id="show-gallery" name="show-gallery">
+                                    <label for="show-gallery">Include Image Gallery</label>
+                                    <p class="input-help">Displays an image gallery to increase engagement.</p>
+                                </div>
+
+                                <div class="form-group checkbox-group">
+                                    <input type="checkbox" id="show-games" name="show-games">
+                                    <label for="show-games">Include Games</label>
+                                    <p class="input-help">Add interactive games to keep visitors on your page longer.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="form-actions full-width">
+                                <button type="submit" class="user-button primary">Save Changes</button>
+                                <a href="my-pages.html" class="user-button tertiary">Cancel</a>
+                            </div>
+
+                            <input type="hidden" id="page-id" name="page-id">
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-row">
+                <div class="dashboard-card full-width">
+                    <div class="card-header">
+                        <h3>Gallery Images</h3>
+                        <p>Add images to your page's gallery (only applies if Gallery is enabled)</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="gallery-upload-area">
+                            <div class="upload-zone" id="gallery-upload">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Drag & drop images here or click to browse</p>
+                                <input type="file" id="gallery-upload-input" multiple accept="image/*"
+                                    style="display: none;">
+                            </div>
+                            <div class="gallery-preview" id="gallery-preview">
+                                <p class="no-images">No images added yet</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-row">
+                <div class="dashboard-card full-width">
+                    <div class="card-header">
+                        <h3>Ad Settings</h3>
+                        <p>Configure how ads will be delivered on your page</p>
+                    </div>
+                    <div class="card-content">
+                        <form id="ad-settings-form" class="user-form two-column">
+                            <div class="form-column">
+                                <div class="form-group">
+                                    <label for="initial-delay">Initial Delay (seconds)</label>
+                                    <input type="number" id="initial-delay" name="initial-delay" min="0" value="3">
+                                    <p class="input-help">How long to wait before showing the first ad.</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="repeat-interval">Repeat Interval (seconds)</label>
+                                    <input type="number" id="repeat-interval" name="repeat-interval" min="10"
+                                        value="30">
+                                    <p class="input-help">How often to show ads after the initial delay.</p>
+                                </div>
+                            </div>
+
+                            <div class="form-column">
+                                <div class="form-group">
+                                    <label for="max-ads">Maximum Ads</label>
+                                    <input type="number" id="max-ads" name="max-ads" min="1" value="10">
+                                    <p class="input-help">Maximum number of ads to show per session.</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="trigger-chance">Interaction Trigger Chance (%)</label>
+                                    <input type="number" id="trigger-chance" name="trigger-chance" min="1" max="100"
+                                        value="15">
+                                    <p class="input-help">Chance of triggering an ad after user interaction (games,
+                                        gallery).</p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log("Edit Page loaded");
+
+            // Check if user is logged in
+            const userToken = localStorage.getItem('adblast_user_token');
+            if (!userToken) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const userData = JSON.parse(userToken);
+            const userId = userData.userId;
+            const username = userData.username;
+
+            // Update user info in UI
+            document.getElementById('user-name').textContent = username;
+
+            // Get page ID from URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const pageId = urlParams.get('id');
+
+            if (!pageId) {
+                alert('No page ID specified. Redirecting to My Pages.');
+                window.location.href = 'my-pages.html';
+                return;
+            }
+
+            // Set page ID in hidden field
+            document.getElementById('page-id').value = pageId;
+
+            // Load page data
+            loadPageData(userId, pageId);
+
+            // Logout functionality
+            document.getElementById('logout-btn').addEventListener('click', function (e) {
+                e.preventDefault();
+                localStorage.removeItem('adblast_user_token');
+                window.location.href = 'login.html';
+            });
+
+            // Toggle profile dropdown
+            const userAvatar = document.querySelector('.user-avatar');
+            userAvatar.addEventListener('click', function () {
+                const dropdown = document.querySelector('.profile-dropdown');
+                dropdown.classList.toggle('show');
+            });
+
+            // Close dropdown when clicking outside
+            window.addEventListener('click', function (e) {
+                if (!e.target.matches('.user-avatar')) {
+                    const dropdown = document.querySelector('.profile-dropdown');
+                    if (dropdown.classList.contains('show')) {
+                        dropdown.classList.remove('show');
+                    }
+                }
+            });
+
+            // Handle gallery upload click
+            const galleryUpload = document.getElementById('gallery-upload');
+            const galleryUploadInput = document.getElementById('gallery-upload-input');
+            const galleryPreview = document.getElementById('gallery-preview');
+
+            galleryUpload.addEventListener('click', function () {
+                galleryUploadInput.click();
+            });
+
+            galleryUploadInput.addEventListener('change', function (e) {
+                handleGalleryImages(e.target.files);
+            });
+
+            // Handle drag and drop
+            galleryUpload.addEventListener('dragover', function (e) {
+                e.preventDefault();
+                galleryUpload.classList.add('active');
+            });
+
+            galleryUpload.addEventListener('dragleave', function () {
+                galleryUpload.classList.remove('active');
+            });
+
+            galleryUpload.addEventListener('drop', function (e) {
+                e.preventDefault();
+                galleryUpload.classList.remove('active');
+                handleGalleryImages(e.dataTransfer.files);
+            });
+
+            function handleGalleryImages(files) {
+                if (files.length === 0) return;
+
+                // Clear no images message
+                const noImages = galleryPreview.querySelector('.no-images');
+                if (noImages) {
+                    noImages.remove();
+                }
+
+                // Process each file
+                Array.from(files).forEach(file => {
+                    if (!file.type.match('image.*')) return;
+
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const imageContainer = document.createElement('div');
+                        imageContainer.className = 'gallery-image-container';
+
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.className = 'gallery-image-preview';
+
+                        const deleteBtn = document.createElement('button');
+                        deleteBtn.className = 'gallery-image-delete';
+                        deleteBtn.innerHTML = '<i class="fas fa-times"></i>';
+                        deleteBtn.addEventListener('click', function () {
+                            imageContainer.remove();
+
+                            // If no more images, show the no images message
+                            if (galleryPreview.querySelectorAll('.gallery-image-container').length === 0) {
+                                const noImagesMsg = document.createElement('p');
+                                noImagesMsg.className = 'no-images';
+                                noImagesMsg.textContent = 'No images added yet';
+                                galleryPreview.appendChild(noImagesMsg);
+                            }
+                        });
+
+                        imageContainer.appendChild(img);
+                        imageContainer.appendChild(deleteBtn);
+                        galleryPreview.appendChild(imageContainer);
+                    };
+
+                    reader.readAsDataURL(file);
+                });
+            }
+
+            // Function to load page data
+            function loadPageData(userId, pageId) {
+                try {
+                    const users = JSON.parse(localStorage.getItem('adblast_users') || '[]');
+                    const currentUser = users.find(user => user.id === userId);
+
+                    if (!currentUser) {
+                        alert('User not found. Please log in again.');
+                        localStorage.removeItem('adblast_user_token');
+                        window.location.href = 'login.html';
+                        return;
+                    }
+
+                    const page = currentUser.pages.find(p => p.id.toString() === pageId.toString());
+
+                    if (!page) {
+                        alert('Page not found. Redirecting to My Pages.');
+                        window.location.href = 'my-pages.html';
+                        return;
+                    }
+
+                    console.log('Loading page data:', page);
+
+                    // Populate form fields
+                    document.getElementById('page-title').value = page.title || '';
+                    document.getElementById('page-description').value = page.description || '';
+                    document.getElementById('page-slug').value = page.slug || '';
+                    document.getElementById('primary-color').value = page.primaryColor || '#4CAF50';
+                    document.getElementById('accent-color').value = page.accentColor || '#2196F3';
+                    document.getElementById('hero-title').value = page.heroTitle || '';
+                    document.getElementById('hero-subtitle').value = page.heroSubtitle || '';
+                    document.getElementById('ad-url').value = page.adUrl || '';
+                    document.getElementById('show-countdown').checked = page.showCountdown || false;
+                    document.getElementById('show-gallery').checked = page.showGallery || false;
+                    document.getElementById('show-games').checked = page.showGames || false;
+
+                    // Populate ad settings
+                    if (page.adSettings) {
+                        document.getElementById('initial-delay').value = page.adSettings.initialDelay || 3;
+                        document.getElementById('repeat-interval').value = page.adSettings.repeatInterval || 30;
+                        document.getElementById('max-ads').value = page.adSettings.maxAds || 10;
+                        document.getElementById('trigger-chance').value = page.adSettings.triggerChance || 15;
+                    }
+
+                    // Populate gallery images
+                    if (page.galleryImages && page.galleryImages.length > 0) {
+                        const noImages = galleryPreview.querySelector('.no-images');
+                        if (noImages) {
+                            noImages.remove();
+                        }
+
+                        page.galleryImages.forEach(image => {
+                            const imageContainer = document.createElement('div');
+                            imageContainer.className = 'gallery-image-container';
+
+                            const img = document.createElement('img');
+                            img.src = image.url;
+                            img.className = 'gallery-image-preview';
+
+                            const deleteBtn = document.createElement('button');
+                            deleteBtn.className = 'gallery-image-delete';
+                            deleteBtn.innerHTML = '<i class="fas fa-times"></i>';
+                            deleteBtn.addEventListener('click', function () {
+                                imageContainer.remove();
+
+                                // If no more images, show the no images message
+                                if (galleryPreview.querySelectorAll('.gallery-image-container').length === 0) {
+                                    const noImagesMsg = document.createElement('p');
+                                    noImagesMsg.className = 'no-images';
+                                    noImagesMsg.textContent = 'No images added yet';
+                                    galleryPreview.appendChild(noImagesMsg);
+                                }
+                            });
+
+                            imageContainer.appendChild(img);
+                            imageContainer.appendChild(deleteBtn);
+                            galleryPreview.appendChild(imageContainer);
+                        });
+                    }
+                } catch (error) {
+                    console.error('Error loading page data:', error);
+                    alert('Error loading page data: ' + error.message);
+                }
+            }
+
+            // Handle form submission
+            const editPageForm = document.getElementById('edit-page-form');
+            editPageForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                try {
+                    // Get form values
+                    const pageTitle = document.getElementById('page-title').value;
+                    const pageDescription = document.getElementById('page-description').value;
+                    const pageSlug = document.getElementById('page-slug').value;
+                    const primaryColor = document.getElementById('primary-color').value;
+                    const accentColor = document.getElementById('accent-color').value;
+                    const heroTitle = document.getElementById('hero-title').value || pageTitle;
+                    const heroSubtitle = document.getElementById('hero-subtitle').value || pageDescription;
+                    const adUrl = document.getElementById('ad-url').value;
+                    const showCountdown = document.getElementById('show-countdown').checked;
+                    const showGallery = document.getElementById('show-gallery').checked;
+                    const showGames = document.getElementById('show-games').checked;
+                    const pageId = document.getElementById('page-id').value;
+
+                    // Get ad settings
+                    const initialDelay = parseInt(document.getElementById('initial-delay').value);
+                    const repeatInterval = parseInt(document.getElementById('repeat-interval').value);
+                    const maxAds = parseInt(document.getElementById('max-ads').value);
+                    const triggerChance = parseInt(document.getElementById('trigger-chance').value);
+
+                    // Get gallery images
+                    const galleryImages = [];
+                    const imageContainers = document.querySelectorAll('.gallery-image-container');
+                    imageContainers.forEach(container => {
+                        const img = container.querySelector('img');
+                        if (img && img.src) {
+                            galleryImages.push({
+                                url: img.src,
+                                title: pageTitle + ' Image',
+                                description: 'Gallery image for ' + pageTitle
+                            });
+                        }
+                    });
+
+                    // Get current user data
+                    const users = JSON.parse(localStorage.getItem('adblast_users') || '[]');
+                    const userIndex = users.findIndex(user => user.id === userId);
+
+                    if (userIndex === -1) {
+                        alert('User not found. Please log in again.');
+                        localStorage.removeItem('adblast_user_token');
+                        window.location.href = 'login.html';
+                        return;
+                    }
+
+                    // Find the page
+                    const pageIndex = users[userIndex].pages.findIndex(p => p.id.toString() === pageId.toString());
+
+                    if (pageIndex === -1) {
+                        alert('Page not found. Redirecting to My Pages.');
+                        window.location.href = 'my-pages.html';
+                        return;
+                    }
+
+                    // Update the page object
+                    const updatedPage = {
+                        ...users[userIndex].pages[pageIndex], // Keep existing properties
+                        title: pageTitle,
+                        description: pageDescription,
+                        slug: pageSlug,
+                        primaryColor,
+                        accentColor,
+                        heroTitle,
+                        heroSubtitle,
+                        adUrl,
+                        showCountdown,
+                        showGallery,
+                        showGames,
+                        galleryImages,
+                        adSettings: {
+                            initialDelay,
+                            repeatInterval,
+                            maxAds,
+                            triggerChance
+                        },
+                        lastUpdated: new Date().toISOString()
+                    };
+
+                    // Update page in user data
+                    users[userIndex].pages[pageIndex] = updatedPage;
+
+                    // Save to localStorage
+                    console.log('Saving updated page:', updatedPage);
+                    localStorage.setItem('adblast_users', JSON.stringify(users));
+
+                    // Show success message
+                    alert('Page updated successfully!');
+
+                    // Redirect to my pages
+                    window.location.href = 'my-pages.html';
+                } catch (error) {
+                    console.error('Error updating page:', error);
+                    alert('Error updating page: ' + error.message);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
