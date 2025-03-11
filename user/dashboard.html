@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdBlast - User Dashboard</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/user.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="user-body dashboard-body">
+    <!-- User Header -->
+    <header class="user-header-nav">
+        <div class="header-left">
+            <img src="../Logo.png" alt="AdBlast Logo" class="user-nav-logo">
+            <h2>User Dashboard</h2>
+        </div>
+        <div class="header-right">
+            <div class="user-profile-menu">
+                <span id="user-name">User</span>
+                <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+                <div class="profile-dropdown">
+                    <a href="profile.html"><i class="fas fa-user-circle"></i> My Profile</a>
+                    <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                    <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="user-sidebar">
+            <ul class="user-menu">
+                <li class="active"><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="my-pages.html"><i class="fas fa-file-alt"></i> My Pages</a></li>
+                <li><a href="create-page.html"><i class="fas fa-plus-circle"></i> Create New Page</a></li>
+                <li><a href="ad-manager.html"><i class="fas fa-ad"></i> Ad Manager</a></li>
+                <li><a href="analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Dashboard Area -->
+        <div class="dashboard-content">
+            <div class="dashboard-welcome">
+                <h1>Welcome to Your Dashboard, <span id="welcome-name">User</span>!</h1>
+                <p>Manage your custom ad pages, track performance, and boost your marketing efforts.</p>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Active Pages</h3>
+                        <p class="stat-number" id="pages-count">0</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Total Views</h3>
+                        <p class="stat-number">0</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-mouse-pointer"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Ad Clicks</h3>
+                        <p class="stat-number">0</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Conversion Rate</h3>
+                        <p class="stat-number">0%</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity & Quick Actions -->
+            <div class="dashboard-row">
+                <div class="dashboard-column">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Recent Activity</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="activity-list" id="activity-list">
+                                <div class="empty-state">
+                                    <i class="fas fa-history"></i>
+                                    <p>No recent activity to display</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-column">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Quick Actions</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="quick-actions">
+                                <a href="create-page.html" class="action-button">
+                                    <i class="fas fa-plus-circle"></i>
+                                    <span>Create New Page</span>
+                                </a>
+                                <a href="ad-manager.html" class="action-button">
+                                    <i class="fas fa-ad"></i>
+                                    <span>Manage Ads</span>
+                                </a>
+                                <a href="analytics.html" class="action-button">
+                                    <i class="fas fa-chart-line"></i>
+                                    <span>View Analytics</span>
+                                </a>
+                                <a href="settings.html" class="action-button">
+                                    <i class="fas fa-cog"></i>
+                                    <span>Settings</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- My Pages Preview -->
+            <div class="dashboard-row">
+                <div class="dashboard-card full-width">
+                    <div class="card-header">
+                        <h3>My Pages</h3>
+                        <a href="my-pages.html" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="card-content">
+                        <div class="pages-grid" id="pages-grid">
+                            <div class="empty-state" id="no-pages">
+                                <i class="fas fa-file-alt"></i>
+                                <p>You don't have any pages yet</p>
+                                <a href="create-page.html" class="user-button primary">Create Your First Page</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log("Dashboard loaded");
+
+            // Check if user is logged in
+            const userToken = localStorage.getItem('adblast_user_token');
+            if (!userToken) {
+                console.log("No user token found, redirecting to login");
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const userData = JSON.parse(userToken);
+            const userId = userData.userId;
+            const username = userData.username;
+            console.log(`User logged in: ${username}, ID: ${userId}`);
+
+            // Update user info in UI
+            document.getElementById('user-name').textContent = username;
+            document.getElementById('welcome-name').textContent = username;
+
+            // Fetch user data
+            let users = JSON.parse(localStorage.getItem('adblast_users') || '[]');
+            if (!Array.isArray(users)) {
+                console.error('users is not an array:', users);
+                users = [];
+            }
+
+            const currentUser = users.find(user => user.id === userId);
+
+            if (!currentUser) {
+                console.error("User not found in database, redirecting to login");
+                localStorage.removeItem('adblast_user_token');
+                window.location.href = 'login.html';
+                return;
+            }
+
+            console.log(`User data loaded: ${currentUser.username}`);
+
+            // Update page count
+            const pagesCount = currentUser.pages && Array.isArray(currentUser.pages) ? currentUser.pages.length : 0;
+            document.getElementById('pages-count').textContent = pagesCount;
+            console.log(`User has ${pagesCount} pages`);
+
+            // Show pages if user has any
+            if (pagesCount > 0) {
+                try {
+                    const pagesGrid = document.getElementById('pages-grid');
+                    const noPages = document.getElementById('no-pages');
+                    if (!pagesGrid) {
+                        console.error("Pages grid element not found");
+                        return;
+                    }
+
+                    noPages.style.display = 'none';
+
+                    // Clear existing content
+                    while (pagesGrid.firstChild) {
+                        pagesGrid.removeChild(pagesGrid.firstChild);
+                    }
+
+                    // Only show up to 4 most recent pages on dashboard
+                    let recentPages = [];
+                    try {
+                        recentPages = [...currentUser.pages]
+                            .filter(page => page && page.id) // Filter out invalid pages
+                            .sort((a, b) => {
+                                return new Date(b.dateCreated || 0) - new Date(a.dateCreated || 0);
+                            })
+                            .slice(0, 4);
+                    } catch (err) {
+                        console.error("Error sorting pages:", err);
+                        recentPages = currentUser.pages.slice(0, 4);
+                    }
+
+                    console.log(`Displaying ${recentPages.length} recent pages`);
+
+                    recentPages.forEach((page, index) => {
+                        if (!page || !page.id) {
+                            console.warn(`Skipping invalid page at index ${index}`);
+                            return;
+                        }
+
+                        console.log(`Creating card for page: ${page.title}`);
+                        const pageCard = document.createElement('div');
+                        pageCard.className = 'page-card';
+                        pageCard.dataset.id = page.id;
+
+                        pageCard.innerHTML = `
+                            <div class="page-preview">
+                                <img src="${page.thumbnail || 'https://via.placeholder.com/300x200?text=' + encodeURIComponent(page.title)}" alt="${page.title}">
+                            </div>
+                            <div class="page-info">
+                                <h4>${page.title}</h4>
+                                <p>${page.description || 'No description'}</p>
+                                <div class="page-stats">
+                                    <span><i class="fas fa-eye"></i> ${page.views || 0} views</span>
+                                    <span><i class="fas fa-mouse-pointer"></i> ${page.clicks || 0} clicks</span>
+                                </div>
+                                <div class="page-actions">
+                                    <a href="edit-page.html?id=${page.id}" class="page-action edit" title="Edit Page"><i class="fas fa-edit"></i></a>
+                                    <a href="preview-page.html?id=${page.id}" class="page-action preview" title="Preview Page"><i class="fas fa-eye"></i></a>
+                                    <a href="${page.publicUrl || '#'}" target="_blank" class="page-action link" title="Open Public Page"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        `;
+
+                        pagesGrid.appendChild(pageCard);
+                    });
+                } catch (error) {
+                    console.error("Error displaying pages:", error);
+                }
+            } else {
+                console.log("No pages to display");
+            }
+
+            // Logout functionality
+            document.getElementById('logout-btn').addEventListener('click', function (e) {
+                e.preventDefault();
+                localStorage.removeItem('adblast_user_token');
+                window.location.href = 'login.html';
+            });
+
+            // Toggle profile dropdown
+            const userAvatar = document.querySelector('.user-avatar');
+            userAvatar.addEventListener('click', function () {
+                const dropdown = document.querySelector('.profile-dropdown');
+                dropdown.classList.toggle('show');
+            });
+
+            // Close dropdown when clicking outside
+            window.addEventListener('click', function (e) {
+                if (!e.target.matches('.user-avatar')) {
+                    const dropdown = document.querySelector('.profile-dropdown');
+                    if (dropdown.classList.contains('show')) {
+                        dropdown.classList.remove('show');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

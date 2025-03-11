@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdBlast - Create Ad Page</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/user.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="user-body dashboard-body">
+    <!-- User Header -->
+    <header class="user-header-nav">
+        <div class="header-left">
+            <img src="../Logo.png" alt="AdBlast Logo" class="user-nav-logo">
+            <h2>Create New Ad Page</h2>
+        </div>
+        <div class="header-right">
+            <div class="user-profile-menu">
+                <span id="user-name">User</span>
+                <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+                <div class="profile-dropdown">
+                    <a href="profile.html"><i class="fas fa-user-circle"></i> My Profile</a>
+                    <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                    <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="user-sidebar">
+            <ul class="user-menu">
+                <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="my-pages.html"><i class="fas fa-file-alt"></i> My Pages</a></li>
+                <li class="active"><a href="create-page.html"><i class="fas fa-plus-circle"></i> Create New Page</a>
+                </li>
+                <li><a href="ad-manager.html"><i class="fas fa-ad"></i> Ad Manager</a></li>
+                <li><a href="analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="dashboard-content">
+            <div class="dashboard-welcome">
+                <h1>Create Your Custom Ad Page</h1>
+                <p>Design your own ad page that matches your brand and drives user engagement.</p>
+            </div>
+
+            <div class="dashboard-row">
+                <div class="dashboard-card full-width">
+                    <div class="card-header">
+                        <h3>Page Details</h3>
+                    </div>
+                    <div class="card-content">
+                        <form id="create-page-form" class="user-form two-column">
+                            <div class="form-column">
+                                <div class="form-group">
+                                    <label for="page-title">Page Title</label>
+                                    <input type="text" id="page-title" name="page-title"
+                                        placeholder="Enter a title for your page" required>
+                                    <p class="input-help">This will appear as the title in browser tabs and search
+                                        results.</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="page-description">Page Description</label>
+                                    <textarea id="page-description" name="page-description" rows="3"
+                                        placeholder="Brief description of your page"></textarea>
+                                    <p class="input-help">Will be used for SEO and when sharing on social media.</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="page-slug">Custom URL</label>
+                                    <div class="input-group">
+                                        <span class="input-prefix">adblast.com/user/</span>
+                                        <input type="text" id="page-slug" name="page-slug" placeholder="your-page-name"
+                                            required>
+                                    </div>
+                                    <p class="input-help">Choose a unique URL for your page. Only letters, numbers, and
+                                        hyphens.</p>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="primary-color">Primary Color</label>
+                                        <input type="color" id="primary-color" name="primary-color" value="#4CAF50">
+                                        <p class="input-help">Main color for buttons and highlights.</p>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="accent-color">Accent Color</label>
+                                        <input type="color" id="accent-color" name="accent-color" value="#2196F3">
+                                        <p class="input-help">Secondary color for elements like links.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-column">
+                                <div class="form-group">
+                                    <label for="hero-title">Hero Section Title</label>
+                                    <input type="text" id="hero-title" name="hero-title"
+                                        placeholder="Enter a catchy headline">
+                                    <p class="input-help">Main headline that visitors will see first.</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="hero-subtitle">Hero Section Subtitle</label>
+                                    <input type="text" id="hero-subtitle" name="hero-subtitle"
+                                        placeholder="Supporting text for your headline">
+                                    <p class="input-help">Brief text that appears below the headline.</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="hero-image">Hero Background Image</label>
+                                    <input type="file" id="hero-image" name="hero-image" accept="image/*">
+                                    <p class="input-help">Background image for the hero section. Recommended size:
+                                        1920x1080px.</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="ad-url">Primary Ad URL</label>
+                                    <input type="url" id="ad-url" name="ad-url" placeholder="https://example.com"
+                                        required>
+                                    <p class="input-help">The main URL where visitors will be directed when clicking
+                                        your ads.</p>
+                                </div>
+
+                                <div class="form-group checkbox-group">
+                                    <input type="checkbox" id="show-countdown" name="show-countdown" checked>
+                                    <label for="show-countdown">Show Countdown Timer</label>
+                                    <p class="input-help">Creates urgency with a countdown timer.</p>
+                                </div>
+
+                                <div class="form-group checkbox-group">
+                                    <input type="checkbox" id="show-gallery" name="show-gallery" checked>
+                                    <label for="show-gallery">Include Image Gallery</label>
+                                    <p class="input-help">Displays an image gallery to increase engagement.</p>
+                                </div>
+
+                                <div class="form-group checkbox-group">
+                                    <input type="checkbox" id="show-games" name="show-games" checked>
+                                    <label for="show-games">Include Games</label>
+                                    <p class="input-help">Add interactive games to keep visitors on your page longer.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="form-actions full-width">
+                                <button type="submit" class="user-button primary">Create Page</button>
+                                <button type="button" class="user-button secondary" id="preview-btn">Preview</button>
+                                <button type="reset" class="user-button tertiary">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-row">
+                <div class="dashboard-card full-width">
+                    <div class="card-header">
+                        <h3>Gallery Images</h3>
+                        <p>Add images to your page's gallery (only applies if Gallery is enabled)</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="gallery-upload-area">
+                            <div class="upload-zone" id="gallery-upload">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Drag & drop images here or click to browse</p>
+                                <input type="file" id="gallery-upload-input" multiple accept="image/*"
+                                    style="display: none;">
+                            </div>
+                            <div class="gallery-preview" id="gallery-preview">
+                                <p class="no-images">No images added yet</p>
+                            </div>
+                        </div>
+
+                        <!-- Admin Gallery Images Section -->
+                        <div class="admin-gallery-section">
+                            <h4>Or select from admin gallery</h4>
+                            <p>Click on an image to add it to your gallery</p>
+                            <div id="admin-gallery-images" class="admin-gallery-grid">
+                                <p class="loading-message">Loading admin gallery images...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-row">
+                <div class="dashboard-card full-width">
+                    <div class="card-header">
+                        <h3>Ad Settings</h3>
+                        <p>Configure how ads will be delivered on your page</p>
+                    </div>
+                    <div class="card-content">
+                        <form id="ad-settings-form" class="user-form two-column">
+                            <div class="form-column">
+                                <div class="form-group">
+                                    <label for="initial-delay">Initial Delay (seconds)</label>
+                                    <input type="number" id="initial-delay" name="initial-delay" min="0" value="3">
+                                    <p class="input-help">How long to wait before showing the first ad.</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="repeat-interval">Repeat Interval (seconds)</label>
+                                    <input type="number" id="repeat-interval" name="repeat-interval" min="10"
+                                        value="30">
+                                    <p class="input-help">How often to show ads after the initial delay.</p>
+                                </div>
+                            </div>
+
+                            <div class="form-column">
+                                <div class="form-group">
+                                    <label for="max-ads">Maximum Ads</label>
+                                    <input type="number" id="max-ads" name="max-ads" min="1" value="10">
+                                    <p class="input-help">Maximum number of ads to show per session.</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="trigger-chance">Interaction Trigger Chance (%)</label>
+                                    <input type="number" id="trigger-chance" name="trigger-chance" min="1" max="100"
+                                        value="15">
+                                    <p class="input-help">Chance of triggering an ad after user interaction (games,
+                                        gallery).</p>
+                                </div>
+                            </div>
+
+                            <div class="form-actions full-width">
+                                <button type="submit" class="user-button primary">Save Ad Settings</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Admin gallery styles */
+        .admin-gallery-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .admin-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .admin-gallery-image {
+            cursor: pointer;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .admin-gallery-image:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .admin-gallery-image img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .admin-gallery-image::after {
+            content: '+';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(76, 175, 80, 0.8);
+            color: white;
+            font-size: 24px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .admin-gallery-image:hover::after {
+            opacity: 1;
+        }
+
+        .loading-message {
+            grid-column: 1 / -1;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+        }
+
+        .no-admin-images {
+            grid-column: 1 / -1;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Check if user is logged in
+            const userToken = localStorage.getItem('adblast_user_token');
+            if (!userToken) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const userData = JSON.parse(userToken);
+            const userId = userData.userId;
+            const username = userData.username;
+
+            // Update user info in UI
+            document.getElementById('user-name').textContent = username;
+
+            // Logout functionality
+            document.getElementById('logout-btn').addEventListener('click', function (e) {
+                e.preventDefault();
+                localStorage.removeItem('adblast_user_token');
+                window.location.href = 'login.html';
+            });
+
+            // Toggle profile dropdown
+            const userAvatar = document.querySelector('.user-avatar');
+            userAvatar.addEventListener('click', function () {
+                const dropdown = document.querySelector('.profile-dropdown');
+                dropdown.classList.toggle('show');
+            });
+
+            // Close dropdown when clicking outside
+            window.addEventListener('click', function (e) {
+                if (!e.target.matches('.user-avatar')) {
+                    const dropdown = document.querySelector('.profile-dropdown');
+                    if (dropdown.classList.contains('show')) {
+                        dropdown.classList.remove('show');
+                    }
+                }
+            });
+
+            // Handle gallery upload click
+            const galleryUpload = document.getElementById('gallery-upload');
+            const galleryUploadInput = document.getElementById('gallery-upload-input');
+            const galleryPreview = document.getElementById('gallery-preview');
+
+            galleryUpload.addEventListener('click', function () {
+                galleryUploadInput.click();
+            });
+
+            galleryUploadInput.addEventListener('change', function (e) {
+                handleGalleryImages(e.target.files);
+            });
+
+            // Handle drag and drop
+            galleryUpload.addEventListener('dragover', function (e) {
+                e.preventDefault();
+                galleryUpload.classList.add('active');
+            });
+
+            galleryUpload.addEventListener('dragleave', function () {
+                galleryUpload.classList.remove('active');
+            });
+
+            galleryUpload.addEventListener('drop', function (e) {
+                e.preventDefault();
+                galleryUpload.classList.remove('active');
+                handleGalleryImages(e.dataTransfer.files);
+            });
+
+            function handleGalleryImages(files) {
+                if (files.length === 0) return;
+
+                // Clear no images message
+                const noImages = galleryPreview.querySelector('.no-images');
+                if (noImages) {
+                    noImages.remove();
+                }
+
+                // Process each file
+                Array.from(files).forEach(file => {
+                    if (!file.type.match('image.*')) return;
+
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const imageContainer = document.createElement('div');
+                        imageContainer.className = 'gallery-image-container';
+
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.className = 'gallery-image-preview';
+
+                        const deleteBtn = document.createElement('button');
+                        deleteBtn.className = 'gallery-image-delete';
+                        deleteBtn.innerHTML = '<i class="fas fa-times"></i>';
+                        deleteBtn.addEventListener('click', function () {
+                            imageContainer.remove();
+
+                            // If no more images, show the no images message
+                            if (galleryPreview.querySelectorAll('.gallery-image-container').length === 0) {
+                                const noImagesMsg = document.createElement('p');
+                                noImagesMsg.className = 'no-images';
+                                noImagesMsg.textContent = 'No images added yet';
+                                galleryPreview.appendChild(noImagesMsg);
+                            }
+                        });
+
+                        imageContainer.appendChild(img);
+                        imageContainer.appendChild(deleteBtn);
+                        galleryPreview.appendChild(imageContainer);
+                    };
+
+                    reader.readAsDataURL(file);
+                });
+            }
+
+            // Handle page creation form submission
+            const createPageForm = document.getElementById('create-page-form');
+            createPageForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                try {
+                    console.log("Form submission started");
+
+                    // Get form values
+                    const pageTitle = document.getElementById('page-title').value;
+                    const pageDescription = document.getElementById('page-description').value;
+                    const pageSlug = document.getElementById('page-slug').value;
+                    const primaryColor = document.getElementById('primary-color').value;
+                    const accentColor = document.getElementById('accent-color').value;
+                    const heroTitle = document.getElementById('hero-title').value || pageTitle;
+                    const heroSubtitle = document.getElementById('hero-subtitle').value || pageDescription;
+                    const adUrl = document.getElementById('ad-url').value;
+                    const showCountdown = document.getElementById('show-countdown').checked;
+                    const showGallery = document.getElementById('show-gallery').checked;
+                    const showGames = document.getElementById('show-games').checked;
+
+                    // Get ad settings
+                    const initialDelay = parseInt(document.getElementById('initial-delay').value);
+                    const repeatInterval = parseInt(document.getElementById('repeat-interval').value);
+                    const maxAds = parseInt(document.getElementById('max-ads').value);
+                    const triggerChance = parseInt(document.getElementById('trigger-chance').value);
+
+                    // Get gallery images
+                    const galleryImages = [];
+                    const imageContainers = document.querySelectorAll('.gallery-image-container');
+                    console.log(`Found ${imageContainers.length} gallery images`);
+
+                    imageContainers.forEach((container, index) => {
+                        const img = container.querySelector('img');
+                        if (img && img.src) {
+                            console.log(`Processing image ${index + 1}: ${img.src.substring(0, 30)}...`);
+                            galleryImages.push({
+                                url: img.src,
+                                title: `${pageTitle} Image ${index + 1}`,
+                                description: `Gallery image ${index + 1} for ${pageTitle}`
+                            });
+                        }
+                    });
+
+                    console.log(`Processed ${galleryImages.length} gallery images`);
+
+                    // Generate a thumbnail from the first gallery image or use a placeholder
+                    let thumbnail = null;
+                    if (galleryImages.length > 0) {
+                        thumbnail = galleryImages[0].url;
+                    }
+
+                    // In a real app, this would send to a server
+                    // For this demo, we'll store in local storage
+
+                    // Get all users
+                    let users = JSON.parse(localStorage.getItem('adblast_users') || '[]');
+                    if (!Array.isArray(users)) {
+                        console.error('users is not an array:', users);
+                        users = [];
+                    }
+
+                    const currentUserIndex = users.findIndex(user => user.id === userId);
+
+                    if (currentUserIndex === -1) {
+                        console.error('User not found:', userId);
+                        alert('Error: User not found. Please log in again.');
+                        localStorage.removeItem('adblast_user_token');
+                        window.location.href = 'login.html';
+                        return;
+                    }
+
+                    // Create the page object
+                    const newPage = {
+                        id: Date.now(),
+                        title: pageTitle,
+                        description: pageDescription,
+                        slug: pageSlug,
+                        primaryColor,
+                        accentColor,
+                        heroTitle,
+                        heroSubtitle,
+                        adUrl,
+                        showCountdown,
+                        showGallery,
+                        showGames,
+                        galleryImages,
+                        thumbnail,
+                        adSettings: {
+                            initialDelay,
+                            repeatInterval,
+                            maxAds,
+                            triggerChance
+                        },
+                        dateCreated: new Date().toISOString(),
+                        views: 0,
+                        clicks: 0,
+                        publicUrl: `view-page.html?username=${username}&slug=${pageSlug}`
+                    };
+
+                    console.log('New page object created:', newPage);
+
+                    // Initialize pages array if it doesn't exist
+                    if (!Array.isArray(users[currentUserIndex].pages)) {
+                        users[currentUserIndex].pages = [];
+                    }
+
+                    try {
+                        // Add to the user's pages
+                        users[currentUserIndex].pages.push(newPage);
+
+                        // Save to localStorage
+                        localStorage.setItem('adblast_users', JSON.stringify(users));
+                        console.log('Data saved to localStorage');
+
+                        // Verify the save was successful
+                        const savedUsers = JSON.parse(localStorage.getItem('adblast_users'));
+                        const savedUser = savedUsers.find(u => u.id === userId);
+
+                        if (savedUser && savedUser.pages && savedUser.pages.some(p => p.id === newPage.id)) {
+                            console.log('Verification successful: Page found in saved data');
+                        } else {
+                            console.warn('Verification failed: Page not found in saved data');
+                        }
+
+                        // Show success message
+                        alert('Page created successfully! Redirecting to view your page...');
+
+                        // Delay redirect to ensure localStorage is updated and redirect to the view page
+                        setTimeout(() => {
+                            window.location.href = newPage.publicUrl;
+                        }, 500);
+                    } catch (saveError) {
+                        console.error('Error saving page data:', saveError);
+                        alert('Error saving page: ' + saveError.message);
+                    }
+                } catch (error) {
+                    console.error('Error creating page:', error);
+                    alert('Error creating page: ' + error.message);
+                }
+            });
+
+            // Auto-generate slug from title
+            const pageTitle = document.getElementById('page-title');
+            const pageSlug = document.getElementById('page-slug');
+
+            pageTitle.addEventListener('input', function () {
+                const slug = this.value.toLowerCase()
+                    .replace(/[^a-z0-9\s]/g, '')
+                    .replace(/\s+/g, '-');
+                pageSlug.value = slug;
+            });
+
+            // Preview button
+            document.getElementById('preview-btn').addEventListener('click', function (e) {
+                e.preventDefault();
+                alert('Preview functionality would show a live preview of your page.');
+            });
+
+            // Load admin gallery images
+            loadAdminGalleryImages();
+        });
+
+        // Load admin gallery images
+        function loadAdminGalleryImages() {
+            try {
+                // Try shared gallery images first (these are explicitly shared by admin)
+                const storedSharedImages = localStorage.getItem('adblast_shared_gallery_images');
+                if (storedSharedImages) {
+                    const parsedImages = JSON.parse(storedSharedImages);
+                    console.log('Loaded shared admin gallery images:', parsedImages.length);
+                    return parsedImages;
+                }
+
+                // Fall back to regular admin gallery
+                const storedImages = localStorage.getItem('adblast_gallery_images');
+                if (storedImages) {
+                    const parsedImages = JSON.parse(storedImages);
+                    console.log('Loaded admin gallery images:', parsedImages.length);
+                    return parsedImages;
+                }
+
+                return [];
+            } catch (error) {
+                console.error('Error loading admin gallery images:', error);
+                return [];
+            }
+        }
+
+        // Display admin gallery images
+        function displayAdminGalleryImages() {
+            const adminGalleryGrid = document.getElementById('admin-gallery-images');
+            adminGalleryGrid.innerHTML = '<div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i> Loading admin gallery...</div>';
+
+            // Load admin gallery images
+            const adminImages = loadAdminGalleryImages();
+
+            setTimeout(() => {
+                adminGalleryGrid.innerHTML = '';
+
+                if (!adminImages || adminImages.length === 0) {
+                    adminGalleryGrid.innerHTML = '<p class="no-admin-images">No admin gallery images available</p>';
+                    return;
+                }
+
+                // Create image grid
+                adminImages.forEach((image, index) => {
+                    const imageContainer = document.createElement('div');
+                    imageContainer.className = 'admin-gallery-image';
+
+                    const img = document.createElement('img');
+                    img.src = image.url;
+                    img.alt = image.name || `Admin Gallery Image ${index + 1}`;
+                    img.onerror = function () {
+                        this.src = 'https://via.placeholder.com/150?text=Error';
+                    };
+
+                    // Click event to add this image to the user's gallery
+                    imageContainer.addEventListener('click', function () {
+                        addAdminImageToGallery(image);
+                    });
+
+                    imageContainer.appendChild(img);
+                    adminGalleryGrid.appendChild(imageContainer);
+                });
+            }, 500);
+        }
+
+        // Function to add admin image to user gallery
+        function addAdminImageToGallery(image) {
+            const galleryPreview = document.getElementById('gallery-preview');
+
+            // Clear no images message if it exists
+            const noImages = galleryPreview.querySelector('.no-images');
+            if (noImages) {
+                noImages.remove();
+            }
+
+            // Create container for the new image
+            const imageContainer = document.createElement('div');
+            imageContainer.className = 'gallery-image-container';
+
+            // Create image element
+            const img = document.createElement('img');
+            img.src = image.url;
+            img.className = 'gallery-image-preview';
+
+            // Create delete button
+            const deleteBtn = document.createElement('button');
+            deleteBtn.className = 'gallery-image-delete';
+            deleteBtn.innerHTML = '<i class="fas fa-times"></i>';
+            deleteBtn.addEventListener('click', function () {
+                imageContainer.remove();
+
+                // If no more images, show the no images message
+                if (galleryPreview.querySelectorAll('.gallery-image-container').length === 0) {
+                    const noImagesMsg = document.createElement('p');
+                    noImagesMsg.className = 'no-images';
+                    noImagesMsg.textContent = 'No images added yet';
+                    galleryPreview.appendChild(noImagesMsg);
+                }
+            });
+
+            // Add image and delete button to container
+            imageContainer.appendChild(img);
+            imageContainer.appendChild(deleteBtn);
+
+            // Add container to gallery preview
+            galleryPreview.appendChild(imageContainer);
+        }
+    </script>
+</body>
+
+</html>
