@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdBlast Admin - Login</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="admin-body login-body">
+    <div class="admin-login-container">
+        <div class="login-header">
+            <img src="../Logo.png" alt="AdBlast Logo" class="admin-logo">
+            <h1>Admin Panel</h1>
+        </div>
+
+        <form id="login-form" class="login-form" onsubmit="return false;">
+            <div class="form-group">
+                <label for="passkey"><i class="fas fa-key"></i> Passkey</label>
+                <input type="password" id="passkey" name="passkey" placeholder="Enter admin passkey" required>
+            </div>
+
+            <button type="submit" class="login-button">Login <i class="fas fa-sign-in-alt"></i></button>
+        </form>
+
+        <div id="login-error" class="login-error"></div>
+    </div>
+
+    <script src="js/admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginForm = document.getElementById('login-form');
+            const loginError = document.getElementById('login-error');
+
+            loginForm.addEventListener('submit', function () {
+                const passkey = document.getElementById('passkey').value;
+
+                // Simple demo login with passkey
+                if (passkey === 'admin001') {
+                    // Set a session token (in a real app, this would be a proper JWT or similar)
+                    localStorage.setItem('adblast_admin_token', 'demo_token_123');
+                    window.location.href = 'dashboard.html';
+                } else {
+                    loginError.textContent = 'Invalid passkey';
+                    loginError.style.display = 'block';
+
+                    // Clear the error after 3 seconds
+                    setTimeout(function () {
+                        loginError.style.display = 'none';
+                    }, 3000);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
