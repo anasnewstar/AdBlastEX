@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdBlast Admin - Ad Management</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="admin-body">
+    <!-- Admin Sidebar -->
+    <div class="admin-sidebar">
+        <div class="sidebar-header">
+            <img src="../Logo.png" alt="AdBlast Logo" class="admin-logo">
+            <h3>AdBlast Admin</h3>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li class="active"><a href="ad-management.html"><i class="fas fa-ad"></i> Ad Management</a></li>
+            <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+            <li><a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="admin-content">
+        <div class="admin-header">
+            <h2><i class="fas fa-ad"></i> Ad Management</h2>
+            <div class="user-info">
+                <span>Welcome, Admin</span>
+                <img src="https://via.placeholder.com/40" alt="Admin" class="user-avatar">
+            </div>
+        </div>
+
+        <div class="dashboard-row">
+            <div class="dashboard-card full-width">
+                <div class="card-header">
+                    <h3>Create New Ad</h3>
+                </div>
+                <div class="card-content">
+                    <form id="new-ad-form" class="admin-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="ad-name">Ad Name</label>
+                                <input type="text" id="ad-name" name="ad-name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ad-type">Ad Type</label>
+                                <select id="ad-type" name="ad-type" required>
+                                    <option value="">Select Ad Type</option>
+                                    <option value="url">URL</option>
+                                    <option value="image">Image</option>
+                                    <option value="video">Video</option>
+                                    <option value="html">HTML</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="ad-position">Ad Position</label>
+                                <select id="ad-position" name="ad-position" required>
+                                    <option value="">Select Position</option>
+                                    <option value="new-tab">New Tab</option>
+                                    <option value="top">Top of Page</option>
+                                    <option value="bottom">Bottom of Page</option>
+                                    <option value="left">Left Side</option>
+                                    <option value="right">Right Side</option>
+                                    <option value="center">Center (Popup)</option>
+                                    <option value="bottom-right">Bottom Right (Floating)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ad-status">Status</label>
+                                <select id="ad-status" name="ad-status" required>
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- URL Type -->
+                        <div class="ad-content-section" id="url-content-section" style="display: none;">
+                            <div class="form-group">
+                                <label for="ad-url">Ad URL</label>
+                                <input type="url" id="ad-url" name="ad-url" placeholder="https://example.com">
+                            </div>
+                        </div>
+
+                        <!-- Image Type -->
+                        <div class="ad-content-section" id="image-content-section" style="display: none;">
+                            <div class="form-group">
+                                <label for="ad-image-url">Image URL</label>
+                                <input type="url" id="ad-image-url" name="ad-image-url"
+                                    placeholder="https://example.com/image.jpg">
+                            </div>
+                            <div class="form-group">
+                                <label for="ad-image-link">Click Through URL</label>
+                                <input type="url" id="ad-image-link" name="ad-image-link"
+                                    placeholder="https://example.com">
+                            </div>
+                        </div>
+
+                        <!-- Video Type -->
+                        <div class="ad-content-section" id="video-content-section" style="display: none;">
+                            <div class="form-group">
+                                <label for="ad-video-url">Video URL</label>
+                                <input type="url" id="ad-video-url" name="ad-video-url"
+                                    placeholder="https://example.com/video.mp4">
+                            </div>
+                            <div class="form-group">
+                                <label for="ad-video-link">Click Through URL</label>
+                                <input type="url" id="ad-video-link" name="ad-video-link"
+                                    placeholder="https://example.com">
+                            </div>
+                        </div>
+
+                        <!-- HTML Type -->
+                        <div class="ad-content-section" id="html-content-section" style="display: none;">
+                            <div class="form-group">
+                                <label for="ad-html-code">HTML Code</label>
+                                <textarea id="ad-html-code" name="ad-html-code" rows="6"
+                                    placeholder="<div>Your HTML ad code here</div>"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="admin-btn primary">Save Ad</button>
+                            <button type="button" class="admin-btn" id="preview-ad-btn">Preview</button>
+                            <button type="button" class="admin-btn secondary" id="cancel-ad-btn">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-row">
+            <div class="dashboard-card full-width">
+                <div class="card-header">
+                    <h3>Existing Ads</h3>
+                    <div class="card-actions">
+                        <button class="admin-btn small" id="add-new-ad-btn">
+                            <i class="fas fa-plus"></i> Add New
+                        </button>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Ad Name</th>
+                                <th>Type</th>
+                                <th>Position</th>
+                                <th>Status</th>
+                                <th>Created</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Main Tab Ad</td>
+                                <td>URL</td>
+                                <td>New Tab</td>
+                                <td><span class="status active">Active</span></td>
+                                <td>2023-03-15</td>
+                                <td>
+                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Floating Banner</td>
+                                <td>Image</td>
+                                <td>Bottom Right</td>
+                                <td><span class="status active">Active</span></td>
+                                <td>2023-03-14</td>
+                                <td>
+                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Popup Offer</td>
+                                <td>HTML</td>
+                                <td>Center</td>
+                                <td><span class="status inactive">Inactive</span></td>
+                                <td>2023-03-12</td>
+                                <td>
+                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ad Preview Modal -->
+    <div class="admin-modal" id="preview-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Ad Preview</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="ad-preview-container"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="admin-btn" id="close-preview-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Check if user is logged in
+            const adminToken = localStorage.getItem('adblast_admin_token');
+            if (!adminToken) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Logout functionality
+            const logoutBtn = document.getElementById('logout-btn');
+            logoutBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                localStorage.removeItem('adblast_admin_token');
+                window.location.href = 'login.html';
+            });
+
+            // Ad type change handler
+            const adTypeSelect = document.getElementById('ad-type');
+            const contentSections = document.querySelectorAll('.ad-content-section');
+
+            adTypeSelect.addEventListener('change', function () {
+                // Hide all content sections
+                contentSections.forEach(section => {
+                    section.style.display = 'none';
+                });
+
+                // Show the selected content section
+                const selectedType = this.value;
+                if (selectedType) {
+                    document.getElementById(`${selectedType}-content-section`).style.display = 'block';
+                }
+            });
+
+            // Form submission handling
+            const newAdForm = document.getElementById('new-ad-form');
+            newAdForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                // In a real app, this would send data to a server
+                alert('Ad saved successfully!');
+
+                // Reset form
+                newAdForm.reset();
+                contentSections.forEach(section => {
+                    section.style.display = 'none';
+                });
+            });
+
+            // Cancel button handling
+            const cancelAdBtn = document.getElementById('cancel-ad-btn');
+            cancelAdBtn.addEventListener('click', function () {
+                newAdForm.reset();
+                contentSections.forEach(section => {
+                    section.style.display = 'none';
+                });
+            });
+
+            // Preview button handling
+            const previewAdBtn = document.getElementById('preview-ad-btn');
+            const previewModal = document.getElementById('preview-modal');
+            const closePreviewBtn = document.getElementById('close-preview-btn');
+            const closeModalX = document.querySelector('.close-modal');
+            const adPreviewContainer = document.getElementById('ad-preview-container');
+
+            previewAdBtn.addEventListener('click', function () {
+                const adType = adTypeSelect.value;
+                let previewContent = '';
+
+                switch (adType) {
+                    case 'url':
+                        const adUrl = document.getElementById('ad-url').value;
+                        previewContent = `<p>This ad will open the following URL in a new tab:</p><p><a href="${adUrl}" target="_blank">${adUrl}</a></p>`;
+                        break;
+                    case 'image':
+                        const imageUrl = document.getElementById('ad-image-url').value;
+                        const imageLink = document.getElementById('ad-image-link').value;
+                        previewContent = `<p>Image Ad Preview:</p><a href="${imageLink}" target="_blank"><img src="${imageUrl}" style="max-width: 100%; height: auto;"></a>`;
+                        break;
+                    case 'video':
+                        const videoUrl = document.getElementById('ad-video-url').value;
+                        previewContent = `<p>Video Ad Preview:</p><video controls style="max-width: 100%;"><source src="${videoUrl}" type="video/mp4">Your browser does not support the video tag.</video>`;
+                        break;
+                    case 'html':
+                        const htmlCode = document.getElementById('ad-html-code').value;
+                        previewContent = `<p>HTML Ad Preview:</p><div class="html-preview">${htmlCode}</div>`;
+                        break;
+                    default:
+                        previewContent = '<p>Please select an ad type and fill in the required information.</p>';
+                }
+
+                adPreviewContainer.innerHTML = previewContent;
+                previewModal.style.display = 'block';
+            });
+
+            closePreviewBtn.addEventListener('click', function () {
+                previewModal.style.display = 'none';
+            });
+
+            closeModalX.addEventListener('click', function () {
+                previewModal.style.display = 'none';
+            });
+
+            window.addEventListener('click', function (e) {
+                if (e.target === previewModal) {
+                    previewModal.style.display = 'none';
+                }
+            });
+
+            // Add new ad button handling
+            const addNewAdBtn = document.getElementById('add-new-ad-btn');
+            addNewAdBtn.addEventListener('click', function () {
+                // Scroll to the new ad form
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+
+                // Focus on the first input
+                document.getElementById('ad-name').focus();
+            });
+
+            // Table action buttons
+            const editButtons = document.querySelectorAll('.action-btn.edit');
+            editButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const row = this.closest('tr');
+                    const adName = row.cells[0].textContent;
+                    alert(`Edit ${adName} (In a real app, this would load the ad details for editing)`);
+                });
+            });
+
+            const viewButtons = document.querySelectorAll('.action-btn.view');
+            viewButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const row = this.closest('tr');
+                    const adName = row.cells[0].textContent;
+                    alert(`View ${adName} (In a real app, this would show a preview of the ad)`);
+                });
+            });
+
+            const deleteButtons = document.querySelectorAll('.action-btn.delete');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const row = this.closest('tr');
+                    const adName = row.cells[0].textContent;
+                    if (confirm(`Are you sure you want to delete the ad "${adName}"?`)) {
+                        alert(`${adName} deleted (In a real app, this would delete the ad from the database)`);
+                        // In a real app, this would call an API to delete the ad and then remove the row from the table
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
